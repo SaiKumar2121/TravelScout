@@ -1,10 +1,11 @@
 
 import { Place } from "@/types";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Navigation } from "lucide-react";
+import { MapPin, Navigation, Image } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/components/ui/use-toast";
+import { useState } from "react";
 
 interface PlaceCardProps {
   place: Place;
@@ -12,6 +13,7 @@ interface PlaceCardProps {
 
 export const PlaceCard = ({ place }: PlaceCardProps) => {
   const navigate = useNavigate();
+  const [imageError, setImageError] = useState(false);
   
   const handleCardClick = () => {
     navigate(`/place/${place.id}`);
@@ -38,11 +40,18 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
       onClick={handleCardClick}
     >
       <div className="relative">
-        <img
-          src={place.imageUrl}
-          alt={place.name}
-          className="w-full h-48 object-cover"
-        />
+        {imageError ? (
+          <div className="w-full h-48 bg-muted flex items-center justify-center">
+            <Image className="h-12 w-12 text-muted-foreground/50" />
+          </div>
+        ) : (
+          <img
+            src={`${place.imageUrl}`}
+            alt={place.name}
+            className="w-full h-48 object-cover"
+            onError={() => setImageError(true)}
+          />
+        )}
         <div className="absolute top-2 right-2">
           <Badge variant="secondary" className="font-semibold bg-white text-travel-dark">
             {place.category}
@@ -79,3 +88,4 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
     </Card>
   );
 };
+
