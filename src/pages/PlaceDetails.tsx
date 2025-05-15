@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { getPlaceById } from "@/services/placesService";
 import { Place } from "@/types";
 import { MapPin, Navigation, ArrowLeft, Info } from "lucide-react";
+import { toast } from "@/components/ui/use-toast";
 
 const PlaceDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -40,6 +41,21 @@ const PlaceDetails = () => {
 
   const handleBack = () => {
     navigate(-1);
+  };
+
+  const handleOpenGoogleMaps = () => {
+    if (!place) return;
+    
+    const { latitude, longitude } = place.location;
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+    
+    // Open in a new tab
+    window.open(googleMapsUrl, "_blank", "noopener,noreferrer");
+    
+    toast({
+      title: "Opening Maps",
+      description: `Viewing ${place.name} on Google Maps`
+    });
   };
 
   if (isLoading) {
@@ -92,7 +108,7 @@ const PlaceDetails = () => {
         <div className="flex items-center text-sm text-muted-foreground mb-4">
           <MapPin className="h-4 w-4 mr-1" />
           <span>
-            {place.location.latitude.toFixed(2)}, {place.location.longitude.toFixed(2)}
+            {place.location.latitude.toFixed(4)}, {place.location.longitude.toFixed(4)}
           </span>
           {place.distance && (
             <>
@@ -132,8 +148,11 @@ const PlaceDetails = () => {
         </div>
         
         <div className="mt-8">
-          <Button className="w-full bg-travel-blue hover:bg-travel-blue/90">
-            View on Map
+          <Button 
+            className="w-full bg-travel-blue hover:bg-travel-blue/90"
+            onClick={handleOpenGoogleMaps}
+          >
+            <MapPin className="h-5 w-5 mr-2" /> View on Google Maps
           </Button>
         </div>
       </div>

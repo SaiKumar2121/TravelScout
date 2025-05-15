@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Navigation } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
+import { toast } from "@/components/ui/use-toast";
 
 interface PlaceCardProps {
   place: Place;
@@ -16,9 +17,24 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
     navigate(`/place/${place.id}`);
   };
 
+  const handleMapClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click
+    
+    const { latitude, longitude } = place.location;
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+    
+    // Open in a new tab
+    window.open(googleMapsUrl, "_blank", "noopener,noreferrer");
+    
+    toast({
+      title: "Opening Maps",
+      description: `Viewing ${place.name} on Google Maps`
+    });
+  };
+
   return (
     <Card 
-      className="place-card overflow-hidden cursor-pointer"
+      className="place-card overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
       onClick={handleCardClick}
     >
       <div className="relative">
@@ -52,9 +68,12 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
           </div>
         )}
         
-        <div className="flex items-center text-sm text-muted-foreground mt-2">
+        <div 
+          className="flex items-center text-sm text-travel-blue mt-2 hover:underline"
+          onClick={handleMapClick}
+        >
           <MapPin className="h-4 w-4 mr-1" />
-          <span>View on map</span>
+          <span>View on Google Maps</span>
         </div>
       </CardContent>
     </Card>

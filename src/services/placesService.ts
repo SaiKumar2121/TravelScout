@@ -1,68 +1,84 @@
 
 import { Place, Location } from "@/types";
 import { calculateDistance, formatDistance } from "./locationService";
+import { toast } from "@/components/ui/use-toast";
 
-// Mock data for nearby places
+// Realistic data for famous places in India
 const mockPlaces: Place[] = [
   {
     id: "1",
-    name: "Azure Mountain Lake",
-    description: "A stunning alpine lake surrounded by majestic mountains. Perfect for hiking, photography, and connecting with nature. The crystal clear waters reflect the surrounding peaks for a truly magical experience.",
-    imageUrl: "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
+    name: "Kedarnath Temple",
+    description: "One of the holiest Hindu temples dedicated to Lord Shiva, located in the Himalayan ranges. The temple is part of Char Dham pilgrimage circuit and is known for its spectacular mountain backdrop and spiritual significance.",
+    imageUrl: "https://images.unsplash.com/photo-1621351183012-9e630a45c1a6",
     images: [
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e",
-      "https://images.unsplash.com/photo-1433086966358-54859d0ed716",
-      "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb"
+      "https://images.unsplash.com/photo-1621351183012-9e630a45c1a6",
+      "https://images.unsplash.com/photo-1566376799975-ad0a084926fa",
+      "https://images.unsplash.com/photo-1600058644231-c99f79961de1"
     ],
-    location: { latitude: 47.6062, longitude: -122.3321 },
-    rating: 4.8,
-    category: "Nature",
-    features: ["Hiking", "Photography", "Swimming"]
+    location: { latitude: 30.7352, longitude: 79.0669 },
+    rating: 4.9,
+    category: "Temple",
+    features: ["Pilgrimage", "Trekking", "Mountain Views"]
   },
   {
     id: "2",
-    name: "Mystic Forest Trail",
-    description: "Wander through enchanting woods with ancient trees and magical atmosphere. The sunlight filters through the dense canopy creating a mystical ambiance that's perfect for nature lovers and adventure seekers.",
-    imageUrl: "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86",
+    name: "Munnar Tea Gardens",
+    description: "Lush green tea plantations nestled among the rolling hills of Kerala. Famous for its scenic beauty, mist-covered mountains, and vast expanse of tea estates that create a serene and picturesque landscape.",
+    imageUrl: "https://images.unsplash.com/photo-1598604213913-9b878f6b9397",
     images: [
-      "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86",
-      "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9",
-      "https://images.unsplash.com/photo-1426604966848-d7adac402bff"
+      "https://images.unsplash.com/photo-1598604213913-9b878f6b9397",
+      "https://images.unsplash.com/photo-1599494922487-91d8d00d4c3b",
+      "https://images.unsplash.com/photo-1523744187523-1809a2cecf8f"
     ],
-    location: { latitude: 47.6092, longitude: -122.3350 },
-    rating: 4.6,
+    location: { latitude: 10.0889, longitude: 77.0595 },
+    rating: 4.7,
     category: "Nature",
-    features: ["Walking", "Wildlife", "Photography"]
+    features: ["Tea Plantations", "Hill Station", "Photography"]
   },
   {
     id: "3",
-    name: "Coastal Cliffs View",
-    description: "Dramatic cliffs overlooking the vast ocean with breathtaking sunset views. The crashing waves against the rocky shoreline create a symphony of natural sounds that soothe the soul.",
-    imageUrl: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
+    name: "Valley of Flowers",
+    description: "A UNESCO World Heritage Site in Uttarakhand known for its meadows of alpine flowers and outstanding natural beauty. The valley is home to rare and endangered flora and fauna and offers breathtaking trekking experiences.",
+    imageUrl: "https://images.unsplash.com/photo-1592385518901-5b4845ab3e0e",
     images: [
-      "https://images.unsplash.com/photo-1500375592092-40eb2168fd21",
-      "https://images.unsplash.com/photo-1504893524553-b855bce32c67",
-      "https://images.unsplash.com/photo-1458668383970-8ddd3927deed"
+      "https://images.unsplash.com/photo-1592385518901-5b4845ab3e0e",
+      "https://images.unsplash.com/photo-1600411833196-7c1f6b1a8b90",
+      "https://images.unsplash.com/photo-1609766418204-547f9797fc68"
     ],
-    location: { latitude: 47.6032, longitude: -122.3300 },
-    rating: 4.9,
-    category: "Coastal",
-    features: ["Views", "Sunset", "Walking"]
+    location: { latitude: 30.7283, longitude: 79.6073 },
+    rating: 4.8,
+    category: "Trekking",
+    features: ["Alpine Flowers", "Hiking", "Wildlife"]
   },
   {
     id: "4",
-    name: "Historic City Center",
-    description: "Explore the charming streets filled with history, architecture, and local culture. The cobblestone pathways lead to hidden gems, local artisan shops, and cafes serving authentic cuisine.",
-    imageUrl: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+    name: "Meenakshi Amman Temple",
+    description: "A historic Hindu temple located in Madurai, Tamil Nadu. Known for its stunning Dravidian architecture with thousands of colorful sculptures, towering gopurams (gateway towers), and intricate art that depicts ancient tales.",
+    imageUrl: "https://images.unsplash.com/photo-1604171598147-e2f249d5d907",
     images: [
-      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
-      "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb",
-      "https://images.unsplash.com/photo-1504893524553-b855bce32c67"
+      "https://images.unsplash.com/photo-1604171598147-e2f249d5d907",
+      "https://images.unsplash.com/photo-1621397323368-8a5c7983d357",
+      "https://images.unsplash.com/photo-1573555657105-74c0c73208a0"
     ],
-    location: { latitude: 47.6050, longitude: -122.3344 },
-    rating: 4.5,
-    category: "Urban",
-    features: ["History", "Food", "Shopping"]
+    location: { latitude: 9.9195, longitude: 78.1193 },
+    rating: 4.8,
+    category: "Temple",
+    features: ["Architecture", "History", "Sculptures"]
+  },
+  {
+    id: "5",
+    name: "Alleppey Backwaters",
+    description: "The network of lagoons, lakes, and canals in Kerala, often called the 'Venice of the East'. Famous for its houseboat cruises that offer a glimpse of village life along the serene backwaters surrounded by coconut trees.",
+    imageUrl: "https://images.unsplash.com/photo-1578932017755-6f66fe010497",
+    images: [
+      "https://images.unsplash.com/photo-1578932017755-6f66fe010497",
+      "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1",
+      "https://images.unsplash.com/photo-1580289445498-a05eb71010df"
+    ],
+    location: { latitude: 9.4981, longitude: 76.3388 },
+    rating: 4.6,
+    category: "Waterscape",
+    features: ["Houseboats", "Backwaters", "Village Life"]
   }
 ];
 
@@ -76,26 +92,39 @@ export const getNearbyPlaces = async (
     return mockPlaces;
   }
 
-  // Calculate distance from user and sort by proximity
-  return mockPlaces
-    .map(place => {
-      const distance = calculateDistance(
-        userLocation.latitude,
-        userLocation.longitude,
-        place.location.latitude,
-        place.location.longitude
-      );
-      
-      return {
-        ...place,
-        distance: formatDistance(distance)
-      };
-    })
-    .sort((a, b) => {
-      const distA = parseFloat((a.distance || "").replace(" km", "").replace(" m", ""));
-      const distB = parseFloat((b.distance || "").replace(" km", "").replace(" m", ""));
-      return distA - distB;
+  try {
+    // In a real app, this would make an API call to get actual places near user location
+    // For now, we'll use our mock data and calculate distances
+    
+    // Calculate distance from user and sort by proximity
+    return mockPlaces
+      .map(place => {
+        const distance = calculateDistance(
+          userLocation.latitude,
+          userLocation.longitude,
+          place.location.latitude,
+          place.location.longitude
+        );
+        
+        return {
+          ...place,
+          distance: formatDistance(distance)
+        };
+      })
+      .sort((a, b) => {
+        const distA = parseFloat((a.distance || "").replace(" km", "").replace(" m", ""));
+        const distB = parseFloat((b.distance || "").replace(" km", "").replace(" m", ""));
+        return distA - distB;
+      });
+  } catch (error) {
+    console.error("Error fetching places:", error);
+    toast({
+      title: "Error",
+      description: "Failed to fetch nearby places",
+      variant: "destructive"
     });
+    return [];
+  }
 };
 
 export const getPlaceById = async (id: string): Promise<Place | undefined> => {
