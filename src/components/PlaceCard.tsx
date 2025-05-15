@@ -1,7 +1,7 @@
 
 import { Place } from "@/types";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Navigation, Image } from "lucide-react";
+import { MapPin, Image } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/components/ui/use-toast";
@@ -57,6 +57,11 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
             {place.category}
           </Badge>
         </div>
+        <div className="absolute bottom-2 right-2">
+          <Badge variant="secondary" className="font-semibold bg-white/80">
+            {place.state}
+          </Badge>
+        </div>
       </div>
       <CardContent className="p-4">
         <div className="flex justify-between items-start mb-2">
@@ -70,13 +75,6 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
           {place.description}
         </p>
         
-        {place.distance && (
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Navigation className="h-4 w-4 mr-1 text-travel-accent" />
-            <span>{place.distance} away</span>
-          </div>
-        )}
-        
         <div 
           className="flex items-center text-sm text-travel-blue mt-2 hover:underline"
           onClick={handleMapClick}
@@ -88,4 +86,3 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
     </Card>
   );
 };
-

@@ -1,15 +1,13 @@
 
 import { useState, useEffect } from "react";
 import { getNearbyPlaces, getPlaceCategories, getPlaceStates } from "@/services/placesService";
-import { Place, UserLocation } from "@/types";
-import { LocationPermission } from "@/components/LocationPermission";
+import { Place } from "@/types";
 import { PlaceCard } from "@/components/PlaceCard";
 import { CategoryFilter } from "@/components/CategoryFilter";
 import { StateFilter } from "@/components/StateFilter";
 import { AppHeader } from "@/components/AppHeader";
 
 const Index = () => {
-  const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
   const [places, setPlaces] = useState<Place[]>([]);
   const [filteredPlaces, setFilteredPlaces] = useState<Place[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
@@ -22,15 +20,7 @@ const Index = () => {
     const fetchPlaces = async () => {
       setIsLoading(true);
       try {
-        let location = null;
-        if (userLocation && userLocation.latitude && userLocation.longitude) {
-          location = {
-            latitude: userLocation.latitude,
-            longitude: userLocation.longitude
-          };
-        }
-        
-        const fetchedPlaces = await getNearbyPlaces(location, selectedState);
+        const fetchedPlaces = await getNearbyPlaces(selectedState);
         setPlaces(fetchedPlaces);
         
         // Extract unique categories and states
@@ -54,7 +44,7 @@ const Index = () => {
     };
 
     fetchPlaces();
-  }, [userLocation, selectedState]);
+  }, [selectedState]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -65,16 +55,10 @@ const Index = () => {
     }
   }, [selectedCategory, places]);
 
-  const handleLocationUpdated = (location: UserLocation) => {
-    setUserLocation(location);
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <AppHeader />
       <main className="container px-4 py-6">
-        <LocationPermission onLocationUpdated={handleLocationUpdated} />
-        
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-2">Discover Places</h2>
           <p className="text-muted-foreground">
@@ -114,7 +98,7 @@ const Index = () => {
           <div className="text-center my-12">
             <h3 className="text-xl font-semibold">No places found</h3>
             <p className="text-muted-foreground">
-              Try changing your filter or expanding your search area
+              Try changing your filter or selecting a different state
             </p>
           </div>
         )}

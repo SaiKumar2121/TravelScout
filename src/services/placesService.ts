@@ -3,8 +3,9 @@ import { Place, Location } from "@/types";
 import { calculateDistance, formatDistance } from "./locationService";
 import { toast } from "@/components/ui/use-toast";
 
-// Realistic data for famous places in India organized by state
+// Comprehensive data for famous places in India organized by state
 const mockPlaces: Place[] = [
+  // Uttarakhand
   {
     id: "1",
     name: "Kedarnath Temple",
@@ -23,6 +24,40 @@ const mockPlaces: Place[] = [
   },
   {
     id: "2",
+    name: "Valley of Flowers",
+    description: "A UNESCO World Heritage Site in Uttarakhand known for its meadows of alpine flowers and outstanding natural beauty. The valley is home to rare and endangered flora and fauna and offers breathtaking trekking experiences.",
+    imageUrl: "https://images.unsplash.com/photo-1592385518901-5b4845ab3e0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1592385518901-5b4845ab3e0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1600411833196-7c1f6b1a8b90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1609766418204-547f9797fc68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 30.7283, longitude: 79.6073 },
+    rating: 4.8,
+    category: "Nature",
+    features: ["Alpine Flowers", "Hiking", "Wildlife"],
+    state: "Uttarakhand"
+  },
+  {
+    id: "3",
+    name: "Rishikesh",
+    description: "Known as the 'Yoga Capital of the World', Rishikesh is a spiritual town situated on the banks of the Ganges River, famous for its ashrams, adventure sports, and the Beatles Ashram where the band composed many songs.",
+    imageUrl: "https://images.unsplash.com/photo-1591017775916-4f07138e133e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1591017775916-4f07138e133e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1600579762002-60a468aabb68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1585146045776-a152c3a40dae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 30.1087, longitude: 78.2933 },
+    rating: 4.7,
+    category: "Spiritual",
+    features: ["Yoga", "River Rafting", "Temples"],
+    state: "Uttarakhand"
+  },
+
+  // Kerala
+  {
+    id: "4",
     name: "Munnar Tea Gardens",
     description: "Lush green tea plantations nestled among the rolling hills of Kerala. Famous for its scenic beauty, mist-covered mountains, and vast expanse of tea estates that create a serene and picturesque landscape.",
     imageUrl: "https://images.unsplash.com/photo-1598604213913-9b878f6b9397?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
@@ -36,38 +71,6 @@ const mockPlaces: Place[] = [
     category: "Nature",
     features: ["Tea Plantations", "Hill Station", "Photography"],
     state: "Kerala"
-  },
-  {
-    id: "3",
-    name: "Valley of Flowers",
-    description: "A UNESCO World Heritage Site in Uttarakhand known for its meadows of alpine flowers and outstanding natural beauty. The valley is home to rare and endangered flora and fauna and offers breathtaking trekking experiences.",
-    imageUrl: "https://images.unsplash.com/photo-1592385518901-5b4845ab3e0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1592385518901-5b4845ab3e0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1600411833196-7c1f6b1a8b90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1609766418204-547f9797fc68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-    ],
-    location: { latitude: 30.7283, longitude: 79.6073 },
-    rating: 4.8,
-    category: "Trekking",
-    features: ["Alpine Flowers", "Hiking", "Wildlife"],
-    state: "Uttarakhand"
-  },
-  {
-    id: "4",
-    name: "Meenakshi Amman Temple",
-    description: "A historic Hindu temple located in Madurai, Tamil Nadu. Known for its stunning Dravidian architecture with thousands of colorful sculptures, towering gopurams (gateway towers), and intricate art that depicts ancient tales.",
-    imageUrl: "https://images.unsplash.com/photo-1604171598147-e2f249d5d907?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1604171598147-e2f249d5d907?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1621397323368-8a5c7983d357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1573555657105-74c0c73208a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-    ],
-    location: { latitude: 9.9195, longitude: 78.1193 },
-    rating: 4.8,
-    category: "Temple",
-    features: ["Architecture", "History", "Sculptures"],
-    state: "Tamil Nadu"
   },
   {
     id: "5",
@@ -87,6 +90,58 @@ const mockPlaces: Place[] = [
   },
   {
     id: "6",
+    name: "Wayanad",
+    description: "A lush green hill station in Kerala known for its coffee plantations, wildlife sanctuaries, and ancient caves. The region is dotted with waterfalls, trekking trails, and offers a glimpse into tribal culture.",
+    imageUrl: "https://images.unsplash.com/photo-1623936247318-8dba534ebe76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1623936247318-8dba534ebe76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1600703090899-c93d017862b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1621622646238-2302977f9740?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 11.6854, longitude: 76.1320 },
+    rating: 4.6,
+    category: "Hill Station",
+    features: ["Wildlife", "Coffee Plantations", "Trekking"],
+    state: "Kerala"
+  },
+
+  // Tamil Nadu
+  {
+    id: "7",
+    name: "Meenakshi Amman Temple",
+    description: "A historic Hindu temple located in Madurai, Tamil Nadu. Known for its stunning Dravidian architecture with thousands of colorful sculptures, towering gopurams (gateway towers), and intricate art that depicts ancient tales.",
+    imageUrl: "https://images.unsplash.com/photo-1604171598147-e2f249d5d907?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1604171598147-e2f249d5d907?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1621397323368-8a5c7983d357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1573555657105-74c0c73208a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 9.9195, longitude: 78.1193 },
+    rating: 4.8,
+    category: "Temple",
+    features: ["Architecture", "History", "Sculptures"],
+    state: "Tamil Nadu"
+  },
+  {
+    id: "8",
+    name: "Ooty",
+    description: "A popular hill station in the Nilgiri hills of Tamil Nadu, known for its tea gardens, colonial architecture, and pleasant weather. The toy train ride through the hills is a major attraction.",
+    imageUrl: "https://images.unsplash.com/photo-1583057341924-14a609bee94b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1583057341924-14a609bee94b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1583656698682-8cd505f09ff2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1627301517642-8c913f1b1ab9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 11.4064, longitude: 76.6932 },
+    rating: 4.5,
+    category: "Hill Station",
+    features: ["Tea Gardens", "Toy Train", "Botanical Gardens"],
+    state: "Tamil Nadu"
+  },
+
+  // Uttar Pradesh
+  {
+    id: "9",
     name: "Taj Mahal",
     description: "An ivory-white marble mausoleum on the right bank of the river Yamuna in Agra. Built by Mughal emperor Shah Jahan in memory of his wife Mumtaz Mahal, it is one of the world's most iconic monuments and a symbol of India's rich history.",
     imageUrl: "https://images.unsplash.com/photo-1548013146-72479768bada?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
@@ -102,7 +157,25 @@ const mockPlaces: Place[] = [
     state: "Uttar Pradesh"
   },
   {
-    id: "7",
+    id: "10",
+    name: "Varanasi Ghats",
+    description: "The sacred ghats of Varanasi along the river Ganges, where spiritual ceremonies, cremations, and daily rituals take place. These ancient steps leading to the water are central to Hindu religious practices and offer a unique cultural experience.",
+    imageUrl: "https://images.unsplash.com/photo-1561693326-73866365e515?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1561693326-73866365e515?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1567445480962-ba642b3c3927?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1621330396173-e41b1cafd17f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 25.3176, longitude: 83.0106 },
+    rating: 4.7,
+    category: "Spiritual",
+    features: ["Ghats", "Boat Rides", "Evening Aarti"],
+    state: "Uttar Pradesh"
+  },
+
+  // Goa
+  {
+    id: "11",
     name: "Goa Beaches",
     description: "Famous for its pristine beaches, nightlife, and laid-back coastal atmosphere. Goa's beaches range from popular spots with water sports and beach shacks to secluded stretches perfect for relaxation.",
     imageUrl: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
@@ -118,7 +191,25 @@ const mockPlaces: Place[] = [
     state: "Goa"
   },
   {
-    id: "8",
+    id: "12",
+    name: "Basilica of Bom Jesus",
+    description: "A UNESCO World Heritage Site in Goa housing the mortal remains of St. Francis Xavier. This baroque architecture marvel is one of the best examples of Jesuit architecture in India and attracts visitors for its historical and religious significance.",
+    imageUrl: "https://images.unsplash.com/photo-1533114282175-fa7e7c22609c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1533114282175-fa7e7c22609c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1581326173213-4d009541a295?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1605101100278-5d1deb2b6498?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 15.5009, longitude: 73.9125 },
+    rating: 4.5,
+    category: "Historical",
+    features: ["Church", "Architecture", "Religious Site"],
+    state: "Goa"
+  },
+
+  // West Bengal
+  {
+    id: "13",
     name: "Darjeeling Tea Estates",
     description: "Famous for its tea plantations and the spectacular view of Mount Kanchenjunga, the third highest peak in the world. The toy train, colonial architecture, and vibrant local culture make it a perfect hill station getaway.",
     imageUrl: "https://images.unsplash.com/photo-1544234605-161726706c1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
@@ -132,11 +223,94 @@ const mockPlaces: Place[] = [
     category: "Hill Station",
     features: ["Tea Gardens", "Mountain Views", "Colonial Heritage"],
     state: "West Bengal"
+  },
+  {
+    id: "14",
+    name: "Victoria Memorial",
+    description: "A magnificent white marble building in Kolkata dedicated to Queen Victoria. The museum inside houses a collection of colonial-era artifacts, paintings, and exhibits that showcase the history of British rule in India.",
+    imageUrl: "https://images.unsplash.com/photo-1558431382-27e303142255?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1558431382-27e303142255?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1568652449083-03ad476e4220?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1624005340764-efa67e3a7014?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 22.5448, longitude: 88.3426 },
+    rating: 4.7,
+    category: "Historical",
+    features: ["Museum", "Architecture", "Gardens"],
+    state: "West Bengal"
+  },
+
+  // Rajasthan
+  {
+    id: "15",
+    name: "Jaipur City Palace",
+    description: "A stunning blend of Rajasthani and Mughal architecture in the Pink City of Jaipur. The palace complex includes courtyards, gardens, and buildings that were once the seat of the Maharaja of Jaipur.",
+    imageUrl: "https://images.unsplash.com/photo-1477587458883-47145ed94245?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1477587458883-47145ed94245?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1587295656906-b242aeeb9a82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 26.9255, longitude: 75.8236 },
+    rating: 4.6,
+    category: "Palace",
+    features: ["Architecture", "Museum", "Royal Heritage"],
+    state: "Rajasthan"
+  },
+  {
+    id: "16",
+    name: "Udaipur Lake Palace",
+    description: "A luxury hotel situated on an island in Lake Pichola, Udaipur. Originally built as a royal summer palace, it is now one of the most romantic hotels in the world, offering spectacular views of the lake and surrounding mountains.",
+    imageUrl: "https://images.unsplash.com/photo-1612810806695-30f7a8258391?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1612810806695-30f7a8258391?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1601281080048-59f20e443d90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1562832135-14a35d25edef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 24.5754, longitude: 73.6810 },
+    rating: 4.9,
+    category: "Palace",
+    features: ["Luxury Hotel", "Lake Views", "Royal Experience"],
+    state: "Rajasthan"
+  },
+
+  // Maharashtra
+  {
+    id: "17",
+    name: "Gateway of India",
+    description: "An iconic arch monument in Mumbai built during the British Raj. This seaside landmark commemorates the visit of King George V and Queen Mary and is a popular spot for tourists and locals alike.",
+    imageUrl: "https://images.unsplash.com/photo-1567384384024-08582f0a501f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1567384384024-08582f0a501f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 18.9217, longitude: 72.8347 },
+    rating: 4.6,
+    category: "Monument",
+    features: ["Architecture", "Harbor Views", "Historical Site"],
+    state: "Maharashtra"
+  },
+  {
+    id: "18",
+    name: "Ajanta and Ellora Caves",
+    description: "UNESCO World Heritage sites near Aurangabad featuring rock-cut Buddhist, Hindu, and Jain cave temples. The Ajanta caves contain paintings and sculptures considered masterpieces of Buddhist religious art, while Ellora showcases the largest single monolithic excavation in the world.",
+    imageUrl: "https://images.unsplash.com/photo-1590077082429-ebfae123add1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://images.unsplash.com/photo-1590077082429-ebfae123add1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1618309686144-0c8e2b7a782f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1585128903994-4d42c3df3053?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 20.5519, longitude: 75.7032 },
+    rating: 4.8,
+    category: "Historical",
+    features: ["Cave Temples", "Rock-cut Architecture", "Ancient Art"],
+    state: "Maharashtra"
   }
 ];
 
 export const getNearbyPlaces = async (
-  userLocation: Location | null,
   selectedState: string | null = null
 ): Promise<Place[]> => {
   // Simulate API delay
@@ -147,28 +321,6 @@ export const getNearbyPlaces = async (
     let filteredPlaces = selectedState 
       ? mockPlaces.filter(place => place.state === selectedState)
       : mockPlaces;
-    
-    if (userLocation) {
-      // Calculate distance from user and add to places
-      filteredPlaces = filteredPlaces.map(place => {
-        const distance = calculateDistance(
-          userLocation.latitude,
-          userLocation.longitude,
-          place.location.latitude,
-          place.location.longitude
-        );
-        
-        return {
-          ...place,
-          distance: formatDistance(distance)
-        };
-      })
-      .sort((a, b) => {
-        const distA = parseFloat((a.distance || "").replace(" km", "").replace(" m", ""));
-        const distB = parseFloat((b.distance || "").replace(" km", "").replace(" m", ""));
-        return distA - distB;
-      });
-    }
     
     return filteredPlaces;
   } catch (error) {
