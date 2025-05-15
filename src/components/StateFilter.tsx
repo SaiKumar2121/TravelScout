@@ -20,6 +20,12 @@ export const StateFilter = ({
   selectedState,
   onSelectState,
 }: StateFilterProps) => {
+  // Use "all" as the value for "All States" instead of an empty string
+  const handleStateChange = (value: string) => {
+    // If the value is "all", pass null to onSelectState to represent "All States"
+    onSelectState(value === "all" ? null : value);
+  };
+
   return (
     <div className="flex flex-col gap-2 mb-6">
       <h3 className="text-sm font-medium text-muted-foreground">
@@ -27,14 +33,14 @@ export const StateFilter = ({
       </h3>
       <div className="flex gap-2">
         <Select
-          value={selectedState || ""}
-          onValueChange={(value) => onSelectState(value || null)}
+          value={selectedState || "all"}
+          onValueChange={handleStateChange}
         >
           <SelectTrigger className="w-full">
             <SelectValue placeholder="All States" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All States</SelectItem>
+            <SelectItem value="all">All States</SelectItem>
             {states.map((state) => (
               <SelectItem key={state} value={state}>
                 <div className="flex items-center gap-2">
