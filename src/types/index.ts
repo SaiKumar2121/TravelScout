@@ -15,6 +15,7 @@ export interface Place {
   rating: number;
   category: string;
   features: string[];
+  state: string;
 }
 
 export interface UserLocation {

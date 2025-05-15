@@ -1,10 +1,11 @@
 
 import { useState, useEffect } from "react";
-import { getNearbyPlaces, getPlaceCategories } from "@/services/placesService";
+import { getNearbyPlaces, getPlaceCategories, getPlaceStates } from "@/services/placesService";
 import { Place, UserLocation } from "@/types";
 import { LocationPermission } from "@/components/LocationPermission";
 import { PlaceCard } from "@/components/PlaceCard";
 import { CategoryFilter } from "@/components/CategoryFilter";
+import { StateFilter } from "@/components/StateFilter";
 import { AppHeader } from "@/components/AppHeader";
 
 const Index = () => {
@@ -12,7 +13,9 @@ const Index = () => {
   const [places, setPlaces] = useState<Place[]>([]);
   const [filteredPlaces, setFilteredPlaces] = useState<Place[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
+  const [states, setStates] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedState, setSelectedState] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -27,13 +30,22 @@ const Index = () => {
           };
         }
         
-        const fetchedPlaces = await getNearbyPlaces(location);
+        const fetchedPlaces = await getNearbyPlaces(location, selectedState);
         setPlaces(fetchedPlaces);
-        setFilteredPlaces(fetchedPlaces);
         
-        // Extract unique categories
+        // Extract unique categories and states
         const allCategories = getPlaceCategories();
         setCategories(allCategories);
+        
+        const allStates = getPlaceStates();
+        setStates(allStates);
+        
+        // Apply category filter if needed
+        if (selectedCategory) {
+          setFilteredPlaces(fetchedPlaces.filter(place => place.category === selectedCategory));
+        } else {
+          setFilteredPlaces(fetchedPlaces);
+        }
       } catch (error) {
         console.error("Error fetching places:", error);
       } finally {
@@ -42,7 +54,7 @@ const Index = () => {
     };
 
     fetchPlaces();
-  }, [userLocation]);
+  }, [userLocation, selectedState]);
 
   useEffect(() => {
     if (selectedCategory) {
@@ -66,9 +78,15 @@ const Index = () => {
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-2">Discover Places</h2>
           <p className="text-muted-foreground">
-            Explore beautiful destinations near you
+            Explore beautiful destinations {selectedState ? `in ${selectedState}` : "across India"}
           </p>
         </div>
+
+        <StateFilter 
+          states={states}
+          selectedState={selectedState}
+          onSelectState={setSelectedState}
+        />
 
         <CategoryFilter
           categories={categories}
