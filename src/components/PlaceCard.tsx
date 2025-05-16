@@ -5,7 +5,7 @@ import { MapPin, Image, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import { toast } from "@/components/ui/use-toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -13,6 +13,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 
 interface PlaceCardProps {
   place: Place;
@@ -24,6 +32,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [modalImageIndex, setModalImageIndex] = useState(0);
+  const [autoPlayActive, setAutoPlayActive] = useState(true);
   
   const handleCardClick = () => {
     navigate(`/place/${place.id}`);
@@ -46,6 +55,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
 
   const showPreviousImage = (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent card click
+    setAutoPlayActive(false); // Pause autoplay when manually navigating
     if (place.images?.length > 1) {
       setCurrentImageIndex(prev => 
         prev === 0 ? place.images.length - 1 : prev - 1
@@ -55,6 +65,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
 
   const showNextImage = (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent card click
+    setAutoPlayActive(false); // Pause autoplay when manually navigating
     if (place.images?.length > 1) {
       setCurrentImageIndex(prev => 
         prev === place.images.length - 1 ? 0 : prev + 1
@@ -66,9 +77,11 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
     e.stopPropagation(); // Prevent card click
     setModalImageIndex(currentImageIndex);
     setIsDialogOpen(true);
+    setAutoPlayActive(true); // Start autoplay in the modal
   };
 
   const handleModalPrevious = () => {
+    setAutoPlayActive(false); // Pause autoplay when manually navigating
     if (place.images?.length > 1) {
       setModalImageIndex(prev => 
         prev === 0 ? place.images.length - 1 : prev - 1
@@ -77,12 +90,34 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
   };
 
   const handleModalNext = () => {
+    setAutoPlayActive(false); // Pause autoplay when manually navigating
     if (place.images?.length > 1) {
       setModalImageIndex(prev => 
         prev === place.images.length - 1 ? 0 : prev + 1
       );
     }
   };
+  
+  // Auto-advance the images every 3 seconds if autoplay is active
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    
+    if (autoPlayActive && place.images?.length > 1) {
+      interval = setInterval(() => {
+        if (!isDialogOpen) {
+          setCurrentImageIndex(prev => 
+            prev === place.images.length - 1 ? 0 : prev + 1
+          );
+        } else {
+          setModalImageIndex(prev => 
+            prev === place.images.length - 1 ? 0 : prev + 1
+          );
+        }
+      }, 3000); // Change image every 3 seconds
+    }
+    
+    return () => clearInterval(interval);
+  }, [autoPlayActive, place.images, isDialogOpen]);
 
   return (
     <Card 
@@ -96,44 +131,58 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
           </div>
         ) : (
           <div className="relative">
-            <img
-              src={place.images[currentImageIndex]}
-              alt={place.name}
-              className="w-full h-48 object-cover"
-              onError={() => setImageError(true)}
-              onClick={(e) => openPhotoModal(e)}
-            />
-            
-            {place.images.length > 1 && (
-              <>
-                <button
-                  onClick={showPreviousImage}
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 p-1 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-                <button
-                  onClick={showNextImage}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors"
-                  aria-label="Next image"
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-                <div className="absolute bottom-2 left-2 bg-black/50 text-white px-2 py-1 text-xs rounded-md">
-                  {currentImageIndex + 1}/{place.images.length}
-                </div>
-              </>
-            )}
+            <Carousel className="w-full" setApi={() => {}} opts={{
+              loop: true,
+              skipSnaps: true,
+              startIndex: currentImageIndex,
+              align: "center"
+            }}>
+              <CarouselContent className="-ml-1">
+                {place.images.map((image, index) => (
+                  <CarouselItem key={index} className="pl-1">
+                    <div className="overflow-hidden">
+                      <img
+                        src={image}
+                        alt={`${place.name} - image ${index + 1}`}
+                        className="w-full h-48 object-cover"
+                        onError={() => setImageError(true)}
+                        onClick={(e) => openPhotoModal(e)}
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {place.images.length > 1 && (
+                <>
+                  <button
+                    onClick={showPreviousImage}
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 p-1 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors z-10"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+                  <button
+                    onClick={showNextImage}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors z-10"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                  <div className="absolute bottom-2 left-2 bg-black/50 text-white px-2 py-1 text-xs rounded-md z-10">
+                    {currentImageIndex + 1}/{place.images.length}
+                  </div>
+                </>
+              )}
+            </Carousel>
           </div>
         )}
         
-        <div className="absolute top-2 right-2">
+        <div className="absolute top-2 right-2 z-10">
           <Badge variant="secondary" className="font-semibold bg-white text-travel-dark">
             {place.category}
           </Badge>
         </div>
-        <div className="absolute bottom-2 right-2">
+        <div className="absolute bottom-2 right-2 z-10">
           <Badge variant="secondary" className="font-semibold bg-white/80">
             {place.state}
           </Badge>
@@ -180,34 +229,48 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
           <div className="relative">
             <div className="relative h-[60vh]">
               {place.images && place.images.length > 0 ? (
-                <img
-                  src={place.images[modalImageIndex]}
-                  alt={`${place.name} - Photo ${modalImageIndex + 1}`}
-                  className="w-full h-full object-contain"
-                />
+                <Carousel className="w-full h-full" setApi={() => {}} opts={{
+                  loop: true,
+                  skipSnaps: true,
+                  startIndex: modalImageIndex,
+                  align: "center"
+                }}>
+                  <CarouselContent className="-ml-1 h-full">
+                    {place.images.map((image, index) => (
+                      <CarouselItem key={index} className="pl-1 h-full">
+                        <div className="h-full flex items-center justify-center">
+                          <img
+                            src={image}
+                            alt={`${place.name} - Photo ${index + 1}`}
+                            className="max-h-[60vh] max-w-full object-contain"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  {place.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={handleModalPrevious}
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors z-10"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft className="h-6 w-6" />
+                      </button>
+                      <button
+                        onClick={handleModalNext}
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors z-10"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight className="h-6 w-6" />
+                      </button>
+                    </>
+                  )}
+                </Carousel>
               ) : (
                 <div className="h-full w-full bg-muted flex items-center justify-center">
                   <Image className="h-16 w-16 text-muted-foreground/50" />
                 </div>
-              )}
-              
-              {place.images && place.images.length > 1 && (
-                <>
-                  <button
-                    onClick={handleModalPrevious}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="h-6 w-6" />
-                  </button>
-                  <button
-                    onClick={handleModalNext}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="h-6 w-6" />
-                  </button>
-                </>
               )}
             </div>
             
@@ -221,10 +284,14 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
                   {place.images.map((img, index) => (
                     <button
                       key={index}
-                      onClick={() => setModalImageIndex(index)}
-                      className={`flex-shrink-0 w-16 h-16 overflow-hidden rounded transition-all ${
+                      onClick={() => {
+                        setModalImageIndex(index);
+                        setAutoPlayActive(false);
+                      }}
+                      className={cn(
+                        "flex-shrink-0 w-16 h-16 overflow-hidden rounded transition-all",
                         modalImageIndex === index ? "ring-2 ring-travel-blue" : "opacity-70"
-                      }`}
+                      )}
                     >
                       <img
                         src={img}
