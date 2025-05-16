@@ -9,6 +9,8 @@ import { Place } from "@/types";
 import { MapPin, Navigation, ArrowLeft, Info, Image } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { PhotoModal } from "@/components/PhotoModal";
+import '../App.css'; // Must be present!
+
 
 const PlaceDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -64,6 +66,18 @@ const PlaceDetails = () => {
     setInitialPhotoIndex(index);
     setPhotoModalOpen(true);
   };
+
+  const scrollGallery = (direction: "left" | "right") => {
+    const container = document.getElementById("photo-scroll-container");
+    if (container) {
+      const scrollAmount = 300;
+      container.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
+  
 
   if (isLoading) {
     return (
@@ -147,33 +161,72 @@ const PlaceDetails = () => {
         
         {/* Photo grid section */}
         {place.images && place.images.length > 0 && (
-          <div className="mb-6">
-            <h2 className="font-semibold text-lg mb-3">Photos</h2>
-            <div className="grid grid-cols-3 gap-2">
-              {place.images.slice(0, 6).map((image, index) => (
-                <div 
-                  key={index} 
-                  className="aspect-square rounded-md overflow-hidden cursor-pointer"
-                  onClick={() => openPhotoModal(index)}
-                >
-                  <img 
-                    src={image} 
-                    alt={`${place.name} - Photo ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-              {place.images.length > 6 && (
-                <div 
-                  className="aspect-square rounded-md overflow-hidden bg-black/50 flex items-center justify-center cursor-pointer"
-                  onClick={() => openPhotoModal(6)}
-                >
-                  <span className="text-white font-medium">+{place.images.length - 6}</span>
-                </div>
-              )}
-            </div>
+        <div className="mb-6">
+         <h2 className="font-semibold text-lg mb-3">Photos</h2>
+
+    {/* Desktop: Horizontal scroll view */}
+    <div className="hidden md:block relative">
+      <button
+        onClick={() => scrollGallery("left")}
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white px-2 py-1 shadow rounded-l"
+      >
+        &#60;
+      </button>
+
+      <div
+        id="photo-scroll-container"
+        className="flex overflow-x-auto no-scrollbar space-x-2 snap-x snap-mandatory scroll-smooth"
+      >
+        {place.images.map((image, index) => (
+          <div
+            key={index}
+            className="min-w-[220px] h-[220px] flex-shrink-0 rounded-md overflow-hidden cursor-pointer snap-start"
+            onClick={() => openPhotoModal(index)}
+          >
+            <img
+              src={image}
+              alt={`${place.name} - Photo ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
           </div>
-        )}
+        ))}
+      </div>
+
+      <button
+        onClick={() => scrollGallery("right")}
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white/80 hover:bg-white px-2 py-1 shadow rounded-r"
+      >
+        &#62;
+      </button>
+    </div>
+
+    {/* Mobile: Grid view */}
+    <div className="grid grid-cols-3 gap-2 md:hidden">
+      {place.images.slice(0, 6).map((image, index) => (
+        <div
+          key={index}
+          className="aspect-square rounded-md overflow-hidden cursor-pointer"
+          onClick={() => openPhotoModal(index)}
+        >
+          <img
+            src={image}
+            alt={`${place.name} - Photo ${index + 1}`}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ))}
+      {place.images.length > 6 && (
+        <div
+          className="aspect-square rounded-md overflow-hidden bg-black/50 flex items-center justify-center cursor-pointer"
+          onClick={() => openPhotoModal(6)}
+        >
+          <span className="text-white font-medium">+{place.images.length - 6}</span>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+
         
         <div className="mb-6">
           <h2 className="font-semibold text-lg mb-3">Features</h2>

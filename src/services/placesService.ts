@@ -12,9 +12,12 @@ const mockPlaces: Place[] = [
     description: "One of the holiest Hindu temples dedicated to Lord Shiva, located in the Himalayan ranges. The temple is part of Char Dham pilgrimage circuit and is known for its spectacular mountain backdrop and spiritual significance.",
     imageUrl: "https://images.unsplash.com/photo-1621351183012-9e630a45c1a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
-      "https://images.unsplash.com/photo-1621351183012-9e630a45c1a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1566376799975-ad0a084926fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1600058644231-c99f79961de1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      "https://images.pexels.com/photos/15031440/pexels-photo-15031440.jpeg?cs=srgb&dl=pexels-alok-kumar-273007-15031440.jpg&fm=jpg",
+      "https://images.unsplash.com/photo-1623952146070-f13fc902f769?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8a2VkYXJuYXRofGVufDB8fDB8fHww",
+      "https://media.istockphoto.com/id/515855602/photo/kedarnath-in-india.jpg?s=612x612&w=0&k=20&c=_KmnQbbvqRftKusDTU_JUjVM3V80Mo2jBqaCNx948us=",
+      "https://media.istockphoto.com/id/530813962/photo/kedarnath-in-india.jpg?s=612x612&w=0&k=20&c=gVOIye8JuGFyRDfXsZ_3R9WfFc2SVW90W1W1wntwu-U=",
+      "https://media.istockphoto.com/id/1209865783/photo/view-of-the-kedarnath-temple-lights-at-night-with-mountains-in-the-background-in-uttarakhand.jpg?s=612x612&w=0&k=20&c=FZmfRT12jMsmr62MrJb7_RetqWcVXba_cLP1psLzzoc=",
+      "https://media.istockphoto.com/id/1311174191/photo/mount-nanda-devi-india-himalaya-mountain-landscape.jpg?s=612x612&w=0&k=20&c=EhLdPH0us8ts4Cn8IibWdstyO3K0dOSnslWnJHY3t2Y="
     ],
     location: { latitude: 30.7352, longitude: 79.0669 },
     rating: 4.9,
@@ -28,9 +31,9 @@ const mockPlaces: Place[] = [
     description: "A UNESCO World Heritage Site in Uttarakhand known for its meadows of alpine flowers and outstanding natural beauty. The valley is home to rare and endangered flora and fauna and offers breathtaking trekking experiences.",
     imageUrl: "https://images.unsplash.com/photo-1592385518901-5b4845ab3e0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
-      "https://images.unsplash.com/photo-1592385518901-5b4845ab3e0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1600411833196-7c1f6b1a8b90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1609766418204-547f9797fc68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      "https://www.advenchar.com/wp-content/uploads/2023/02/Valley-of-Flowers-Trek-Advenchar-16.jpg",
+      "https://vl-prod-static.b-cdn.net/system/images/000/677/601/3e7f1c632b898211f92e45d7f42d11f5/original/VOF-1.jpg?1682400189",
+      "https://rishikeshdaytour.com/blog/wp-content/uploads/2024/03/Valley-of-Flowers-Trek-Distance-Best-Time-to-Visit.jpg"
     ],
     location: { latitude: 30.7283, longitude: 79.6073 },
     rating: 4.8,
@@ -44,14 +47,21 @@ const mockPlaces: Place[] = [
     description: "Known as the 'Yoga Capital of the World', Rishikesh is a spiritual town situated on the banks of the Ganges River, famous for its ashrams, adventure sports, and the Beatles Ashram where the band composed many songs.",
     imageUrl: "https://images.unsplash.com/photo-1591017775916-4f07138e133e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
-      "https://images.unsplash.com/photo-1591017775916-4f07138e133e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1600579762002-60a468aabb68?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1585146045776-a152c3a40dae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      "https://s7ap1.scene7.com/is/image/incredibleindia/lakshman-jhula-bridge-rishikesh-uttrakhand-city-1-hero?qlt=82&ts=1726646259495",
+      "https://cdn-web.firstrek.in/wp-content/uploads/2024/02/Ganga-Aarti-in-Rishikesh.jpg",
+      "https://breathedreamgo.com/wp-content/uploads/2020/08/Ganga-Aarti-Ram-Jhula-Rishikesh.jpg",
+      "https://i.ytimg.com/vi/rjvv8lv1_4k/sddefault.jpg",
+      "https://www.choicemyhotel.com/wp-content/uploads/2017/12/camp-in-rishikesh.jpg",
+      "https://5.imimg.com/data5/DH/QK/MY-15337513/river-rafting-and-camping-in-rishikesh.jpeg",
+      "https://www.hoteldekho.com/storage/img/tourattraction/1651305640ram%20jhula%20rishikesh.jpg",
+      "https://media.istockphoto.com/id/1752927325/photo/lord-shiva-statue-on-the-banks-of-the-sacred-ganges-river-in-rishikesh-india.jpg?s=612x612&w=0&k=20&c=pcO82gl0g3hPejL6pf9X4HhOJ7wwlnmoyxIsQu3aNpc=",
+      "https://rishikeshdaytour.com/blog/wp-content/uploads/2024/08/Neer-Waterfalls-in-Rishikesh.jpg",
+      "https://vl-prod-static.b-cdn.net/system/images/000/452/434/0d0494f35ef78fac0fd5f96c838b6f47/banner/Rafting-Shivpuri-1.jpg?1709377285"
     ],
     location: { latitude: 30.1087, longitude: 78.2933 },
     rating: 4.7,
     category: "Spiritual",
-    features: ["Yoga", "River Rafting", "Temples"],
+    features: ["Yoga", "Ganga Aarti", "Laxman Jhula and Ram Jhula", "River Rafting","Bungee Jumping","Giant Swing", "Kayaking", "Camping", "Zipline", "Sky Cycle", "Temples"],
     state: "Uttarakhand"
   },
 
