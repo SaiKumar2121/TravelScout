@@ -1,20 +1,22 @@
 
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ImageGallery } from "@/components/ImageGallery";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { getPlaceById } from "@/services/placesService";
 import { Place } from "@/types";
-import { MapPin, Navigation, ArrowLeft, Info } from "lucide-react";
+import { MapPin, Navigation, ArrowLeft, Info, Image } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
+import { PhotoModal } from "@/components/PhotoModal";
 
 const PlaceDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [place, setPlace] = useState<Place | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [photoModalOpen, setPhotoModalOpen] = useState(false);
+  const [initialPhotoIndex, setInitialPhotoIndex] = useState(0);
 
   useEffect(() => {
     const fetchPlace = async () => {
@@ -58,6 +60,11 @@ const PlaceDetails = () => {
     });
   };
 
+  const openPhotoModal = (index: number) => {
+    setInitialPhotoIndex(index);
+    setPhotoModalOpen(true);
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -86,15 +93,31 @@ const PlaceDetails = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="relative">
-        <ImageGallery images={place.images} />
         <Button 
           variant="outline" 
           size="icon" 
-          className="absolute top-4 left-4 bg-white/70 backdrop-blur-sm hover:bg-white/90"
+          className="absolute top-4 left-4 z-10 bg-white/70 backdrop-blur-sm hover:bg-white/90"
           onClick={handleBack}
         >
           <ArrowLeft className="h-5 w-5" />
         </Button>
+        
+        {/* Show the location details without the slider at top */}
+        <div className="pt-16 pb-4 px-4 bg-travel-blue/10 flex items-center justify-between">
+          <div className="flex items-center text-sm">
+            <MapPin className="h-4 w-4 mr-1" />
+            <span>
+              {place.location.latitude.toFixed(4)}, {place.location.longitude.toFixed(4)}
+            </span>
+            {place.distance && (
+              <>
+                <span className="mx-2">•</span>
+                <Navigation className="h-4 w-4 mr-1" />
+                <span>{place.distance} away</span>
+              </>
+            )}
+          </div>
+        </div>
       </div>
       
       <div className="container px-4 py-6">
@@ -103,20 +126,6 @@ const PlaceDetails = () => {
           <Badge variant="outline" className="text-travel-blue border-travel-blue">
             {place.category}
           </Badge>
-        </div>
-        
-        <div className="flex items-center text-sm text-muted-foreground mb-4">
-          <MapPin className="h-4 w-4 mr-1" />
-          <span>
-            {place.location.latitude.toFixed(4)}, {place.location.longitude.toFixed(4)}
-          </span>
-          {place.distance && (
-            <>
-              <span className="mx-2">•</span>
-              <Navigation className="h-4 w-4 mr-1" />
-              <span>{place.distance} away</span>
-            </>
-          )}
         </div>
         
         <div className="mb-6">
@@ -135,6 +144,36 @@ const PlaceDetails = () => {
           </h2>
           <p className="text-muted-foreground">{place.description}</p>
         </div>
+        
+        {/* Photo grid section */}
+        {place.images && place.images.length > 0 && (
+          <div className="mb-6">
+            <h2 className="font-semibold text-lg mb-3">Photos</h2>
+            <div className="grid grid-cols-3 gap-2">
+              {place.images.slice(0, 6).map((image, index) => (
+                <div 
+                  key={index} 
+                  className="aspect-square rounded-md overflow-hidden cursor-pointer"
+                  onClick={() => openPhotoModal(index)}
+                >
+                  <img 
+                    src={image} 
+                    alt={`${place.name} - Photo ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+              {place.images.length > 6 && (
+                <div 
+                  className="aspect-square rounded-md overflow-hidden bg-black/50 flex items-center justify-center cursor-pointer"
+                  onClick={() => openPhotoModal(6)}
+                >
+                  <span className="text-white font-medium">+{place.images.length - 6}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
         
         <div className="mb-6">
           <h2 className="font-semibold text-lg mb-3">Features</h2>
@@ -156,6 +195,15 @@ const PlaceDetails = () => {
           </Button>
         </div>
       </div>
+      
+      {/* Photo modal */}
+      <PhotoModal
+        images={place.images || []}
+        title={place.name}
+        isOpen={photoModalOpen}
+        initialIndex={initialPhotoIndex}
+        onClose={() => setPhotoModalOpen(false)}
+      />
     </div>
   );
 };
