@@ -44,7 +44,8 @@ const mockPlaces: Place[] = [
   {
     id: "3",
     name: "Rishikesh",
-    description: "Known as the 'Yoga Capital of the World', Rishikesh is a spiritual town situated on the banks of the Ganges River, famous for its ashrams, adventure sports, and the Beatles Ashram where the band composed many songs.",
+    description: "Looking for contrasting yet equally enchanting Indian getaways? Head north to Rishikesh, where the spiritual heart of yoga beats alongside thrilling river adventures in the majestic Himalayas. Feel the energy of ashrams, witness the captivating Ganga Aarti ceremony on the riverbanks, and challenge yourself with white-water rafting or trekking expeditions into the surrounding mountains. The iconic suspension bridges, Ram Jhula and Lakshman Jhula, offer stunning views and a taste of the local life. Or journey south to Munnar, Kerala's verdant jewel, where rolling hills are draped in emerald tea and mist hangs heavy, inviting peaceful exploration. Wander through endless tea estates, learn about tea processing, and breathe in the fragrant air. Discover cascading waterfalls, trek to panoramic viewpoints like Top Station, and perhaps even soar above the landscape on a zipline. The serene lakes and dams add to the tranquility of this hill station, offering moments of quiet reflection amidst breathtaking scenery. Two distinct landscapes, two unforgettable experiences, each promising a unique connection with India's diverse beauty and culture.",
+    
     imageUrl: "https://images.unsplash.com/photo-1591017775916-4f07138e133e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
       "https://s7ap1.scene7.com/is/image/incredibleindia/lakshman-jhula-bridge-rishikesh-uttrakhand-city-1-hero?qlt=82&ts=1726646259495",
