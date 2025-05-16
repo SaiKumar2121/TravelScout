@@ -62,22 +62,26 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
     }
   };
   
-  const openPhotoModal = (e: React.MouseEvent, initialIndex: number = currentImageIndex) => {
+  const openPhotoModal = (e: React.MouseEvent) => {
     e.stopPropagation(); // Prevent card click
-    setModalImageIndex(initialIndex);
+    setModalImageIndex(currentImageIndex);
     setIsDialogOpen(true);
   };
 
   const handleModalPrevious = () => {
-    setModalImageIndex(prev => 
-      prev === 0 ? place.images.length - 1 : prev - 1
-    );
+    if (place.images?.length > 1) {
+      setModalImageIndex(prev => 
+        prev === 0 ? place.images.length - 1 : prev - 1
+      );
+    }
   };
 
   const handleModalNext = () => {
-    setModalImageIndex(prev => 
-      prev === place.images.length - 1 ? 0 : prev + 1
-    );
+    if (place.images?.length > 1) {
+      setModalImageIndex(prev => 
+        prev === place.images.length - 1 ? 0 : prev + 1
+      );
+    }
   };
 
   return (
@@ -159,7 +163,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
           {place.images && place.images.length > 0 && (
             <button
               className="flex items-center text-sm text-travel-blue hover:underline"
-              onClick={(e) => openPhotoModal(e)}
+              onClick={openPhotoModal}
             >
               <Image className="h-4 w-4 mr-1" />
               <span>Photos</span>
