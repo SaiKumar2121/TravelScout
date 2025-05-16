@@ -9,7 +9,7 @@ const mockPlaces: Place[] = [
   {
     id: "1",
     name: "Kedarnath Temple",
-    description: "One of the holiest Hindu temples dedicated to Lord Shiva, located in the Himalayan ranges. The temple is part of Char Dham pilgrimage circuit and is known for its spectacular mountain backdrop and spiritual significance.",
+    description: "Kedarnath is a sacred Hindu town located in the Indian state of Uttarakhand, nestled in the Himalayas near the Mandakini River. It is famous for the Kedarnath Temple, dedicated to Lord Shiva, and is revered as the 11th of the 12 Jyotirlingas—the most sacred Shiva shrines in India. Situated at an altitude of 3,583 meters, Kedarnath is also part of the Char Dham pilgrimage and is known for its spiritual significance, breathtaking mountain views, and challenging treks.",
     imageUrl: "https://images.unsplash.com/photo-1621351183012-9e630a45c1a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
       "https://images.pexels.com/photos/15031440/pexels-photo-15031440.jpeg?cs=srgb&dl=pexels-alok-kumar-273007-15031440.jpg&fm=jpg",
@@ -22,7 +22,7 @@ const mockPlaces: Place[] = [
     location: { latitude: 30.7352, longitude: 79.0669 },
     rating: 4.9,
     category: "Temple",
-    features: ["Pilgrimage", "Trekking", "Mountain Views"],
+    features: ["Pilgrimage", "Trekking", "Mountain Views", "Water Falls"],
     state: "Uttarakhand"
   },
   {
@@ -69,17 +69,25 @@ const mockPlaces: Place[] = [
   {
     id: "4",
     name: "Munnar Tea Gardens",
-    description: "Lush green tea plantations nestled among the rolling hills of Kerala. Famous for its scenic beauty, mist-covered mountains, and vast expanse of tea estates that create a serene and picturesque landscape.",
+    description: "Munnar, a captivating hill station in Kerala's Western Ghats, is renowned for its vast, verdant tea plantations blanketing rolling hills and its perpetually misty atmosphere. This idyllic retreat offers a cool climate and stunning landscapes perfect for exploring endless tea estates, trekking to panoramic viewpoints like Top Station, marveling at beautiful waterfalls, enjoying peaceful boat rides, encountering wildlife in national parks, and engaging in thrilling activities such as ziplining and hiking.",
     imageUrl: "https://images.unsplash.com/photo-1598604213913-9b878f6b9397?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
-      "https://images.unsplash.com/photo-1598604213913-9b878f6b9397?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1599494922487-91d8d00d4c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1523744187523-1809a2cecf8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      "https://www.holidify.com/images/cmsuploads/compressed/Munnar66_20181211014155.jpg",
+      "https://www.trawell.in/blog/wp-content/uploads/2021/08/Kolukkumalai_Tea_Estate_Main.jpg",
+      "https://www.stayvista.com/blog/wp-content/uploads/2024/10/sourav-dhar-P4xeyW97gPg-unsplash-1-edited-scaled.jpg",
+      "https://www.hlimg.com/images/places2see/738X538/15_1490272451p.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/a/ad/Munnar_hillstation_kerala.jpg",
+      "https://www.explorebees.com/uploads/Devikulam.jpg",
+      "https://img.traveltriangle.com/blog/wp-content/uploads/2020/01/Paragliding-In-Kerala_6th-jan.jpg",
+      "https://www.munnar.holiday/munnartourism/wp-content/uploads/2018/05/Munnar-Waterfalls.png",
+      "https://www.munnar.holiday/munnartourism/wp-content/uploads/2018/05/Nyayamakad-Waterfalls.jpg",
+      "https://www.munnar.holiday/munnartourism/wp-content/uploads/2018/05/Kuthumkal-Waterfalls.jpg",
+      "https://www.munnar.holiday/munnartourism/wp-content/uploads/2018/05/Thoovanam-Waterfalls.jpg"
     ],
     location: { latitude: 10.0889, longitude: 77.0595 },
     rating: 4.7,
     category: "Nature",
-    features: ["Tea Plantations", "Hill Station", "Photography"],
+    features: ["Tea Plantations", "Hill Station", "Photography", "Zipline", " Paragliding", "Waterfalls"],
     state: "Kerala"
   },
   {
