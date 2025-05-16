@@ -11,6 +11,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
@@ -131,49 +132,36 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
           </div>
         ) : (
           <div className="relative">
-            <Carousel className="w-full" setApi={() => {}} opts={{
-              loop: true,
-              skipSnaps: true,
-              startIndex: currentImageIndex,
-              align: "center"
-            }}>
-              <CarouselContent className="-ml-1">
-                {place.images.map((image, index) => (
-                  <CarouselItem key={index} className="pl-1">
-                    <div className="overflow-hidden">
-                      <img
-                        src={image}
-                        alt={`${place.name} - image ${index + 1}`}
-                        className="w-full h-48 object-cover"
-                        onError={() => setImageError(true)}
-                        onClick={(e) => openPhotoModal(e)}
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              {place.images.length > 1 && (
-                <>
-                  <button
-                    onClick={showPreviousImage}
-                    className="absolute left-2 top-1/2 transform -translate-y-1/2 p-1 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors z-10"
-                    aria-label="Previous image"
-                  >
-                    <ChevronLeft className="h-5 w-5" />
-                  </button>
-                  <button
-                    onClick={showNextImage}
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors z-10"
-                    aria-label="Next image"
-                  >
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
-                  <div className="absolute bottom-2 left-2 bg-black/50 text-white px-2 py-1 text-xs rounded-md z-10">
-                    {currentImageIndex + 1}/{place.images.length}
-                  </div>
-                </>
-              )}
-            </Carousel>
+            <div className="w-full">
+              <img
+                src={place.images[currentImageIndex]}
+                alt={`${place.name} - image ${currentImageIndex + 1}`}
+                className="w-full h-48 object-cover"
+                onError={() => setImageError(true)}
+                onClick={openPhotoModal}
+              />
+            </div>
+            {place.images.length > 1 && (
+              <>
+                <button
+                  onClick={showPreviousImage}
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 p-1 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors z-10"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={showNextImage}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 rounded-full bg-black/30 text-white hover:bg-black/50 transition-colors z-10"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+                <div className="absolute bottom-2 left-2 bg-black/50 text-white px-2 py-1 text-xs rounded-md z-10">
+                  {currentImageIndex + 1}/{place.images.length}
+                </div>
+              </>
+            )}
           </div>
         )}
         
@@ -225,29 +213,17 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
         <DialogContent className="max-w-4xl p-0">
           <DialogHeader className="p-4">
             <DialogTitle>{place.name} - Photos</DialogTitle>
+            <DialogDescription>Browse through all available photos</DialogDescription>
           </DialogHeader>
           <div className="relative">
             <div className="relative h-[60vh]">
               {place.images && place.images.length > 0 ? (
-                <Carousel className="w-full h-full" setApi={() => {}} opts={{
-                  loop: true,
-                  skipSnaps: true,
-                  startIndex: modalImageIndex,
-                  align: "center"
-                }}>
-                  <CarouselContent className="-ml-1 h-full">
-                    {place.images.map((image, index) => (
-                      <CarouselItem key={index} className="pl-1 h-full">
-                        <div className="h-full flex items-center justify-center">
-                          <img
-                            src={image}
-                            alt={`${place.name} - Photo ${index + 1}`}
-                            className="max-h-[60vh] max-w-full object-contain"
-                          />
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
+                <div className="w-full h-full flex items-center justify-center">
+                  <img
+                    src={place.images[modalImageIndex]}
+                    alt={`${place.name} - Photo ${modalImageIndex + 1}`}
+                    className="max-h-[60vh] max-w-full object-contain"
+                  />
                   {place.images.length > 1 && (
                     <>
                       <button
@@ -266,7 +242,7 @@ export const PlaceCard = ({ place }: PlaceCardProps) => {
                       </button>
                     </>
                   )}
-                </Carousel>
+                </div>
               ) : (
                 <div className="h-full w-full bg-muted flex items-center justify-center">
                   <Image className="h-16 w-16 text-muted-foreground/50" />
