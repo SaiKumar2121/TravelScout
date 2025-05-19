@@ -19,7 +19,7 @@ const mockPlaces: Place[] = [
       "https://media.istockphoto.com/id/1209865783/photo/view-of-the-kedarnath-temple-lights-at-night-with-mountains-in-the-background-in-uttarakhand.jpg?s=612x612&w=0&k=20&c=FZmfRT12jMsmr62MrJb7_RetqWcVXba_cLP1psLzzoc=",
       "https://media.istockphoto.com/id/1311174191/photo/mount-nanda-devi-india-himalaya-mountain-landscape.jpg?s=612x612&w=0&k=20&c=EhLdPH0us8ts4Cn8IibWdstyO3K0dOSnslWnJHY3t2Y="
     ],
-    location: { latitude: 30.7352, longitude: 79.0669 },
+    location: { latitude: 30.734546027972122, longitude: 79.06711753725709 },
     rating: 4.9,
     category: "Temple",
     features: ["Pilgrimage", "Trekking", "Mountain Views", "Water Falls"],
