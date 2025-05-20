@@ -1,5 +1,8 @@
 # TravelScout
 
+> 🚧 **Work In Progress:**  
+> TravelScout is under active development and not yet deployed. Features and content are being added regularly. If you’d like to contribute, check out the roadmap and open issues!
+
 TravelScout is your one-stop platform for exploring India's most famous tourist destinations. Discover top places to visit in every Indian state, complete with beautiful images, up-to-date weather information, and essential details like opening/closing times and the best time to visit. Whether you're planning your next adventure or just exploring from home, our platform helps you find inspiration and practical information for your journeys.
 
 ![Homepage Screenshot](public/images/homepage.png)
@@ -53,6 +56,14 @@ We welcome contributions from everyone to help make TravelScout the best resourc
    Commit your changes to your branch and push to your fork of the repository.
 5. **Create a Pull Request:**  
    Open a pull request to the main repository, clearly describing what you’ve contributed.
+
+## 🌟 Coming Soon
+
+- Live website demo
+- User accounts and contributions
+- More detailed travel guides
+
+---
 
 ### Need Help?
 
