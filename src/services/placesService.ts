@@ -326,6 +326,23 @@ const mockPlaces: Place[] = [
     category: "Historical",
     features: ["Cave Temples", "Rock-cut Architecture", "Ancient Art"],
     state: "Maharashtra"
+  },
+
+  {
+    id: "19",
+    name: "Tungnath Temple – The Highest Shiva Temple in the World",
+    description: "Tungnath Temple, located in Uttarakhand’s Chopta Valley, is the highest Shiva temple in the world at an altitude of 3,600 meters. It is one of the sacred Panch Kedar temples and is known for its easy and scenic trek. Surrounded by the majestic Himalayas, Tungnath offers both spiritual peace and breathtaking natural beauty.The trek to Tungnath is ideal for beginners and nature lovers, with stunning views of peaks like Chaukhamba and Nanda Devi. Just a short climb ahead lies Chandrashila Peak, offering panoramic Himalayan views.",
+    imageUrl: "https://images.unsplash.com/photo-1590077082429-ebfae123add1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+    images: [
+      "https://t.eucdn.in/tourism/lg/tungnath-5173043.webp",
+      "https://images.unsplash.com/photo-1618309686144-0c8e2b7a782f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1585128903994-4d42c3df3053?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+    ],
+    location: { latitude: 30.488622064444026, longitude: 79.21682444121511 },
+    rating: 4.9,
+    category: "Temple",
+    features: ["Temples", "Rock-cut Architecture", "Ancient Temple", "Trekking", "Snow Moutains", "Chandrashila Peak"],
+    state: "Uttarakhand"
   }
 ];
 
