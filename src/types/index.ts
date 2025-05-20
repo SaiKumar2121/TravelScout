@@ -16,6 +16,14 @@ export interface Place {
   category: string;
   features: string[];
   state: string;
+  openingMonths?: {
+    from: string; 
+    to: string;   
+  };
+  bestTimeToVisit?: {
+    from: string; 
+    to: string;
+  };
 }
 
 export interface UserLocation {

@@ -22,6 +22,8 @@ const mockPlaces: Place[] = [
     location: { latitude: 30.734546027972122, longitude: 79.06711753725709 },
     rating: 4.9,
     category: "Temple",
+    openingMonths: { from: "May", to: "October" },
+    bestTimeToVisit: { from: "May", to: "June" },
     features: ["Pilgrimage", "Trekking", "Mountain Views", "Water Falls"],
     state: "Uttarakhand"
   },
@@ -38,6 +40,8 @@ const mockPlaces: Place[] = [
     location: { latitude: 30.7283, longitude: 79.6073 },
     rating: 4.8,
     category: "Nature",
+    openingMonths: { from: "June", to: "October" },
+    bestTimeToVisit: { from: "July", to: "August" },
     features: ["Alpine Flowers", "Hiking", "Wildlife"],
     state: "Uttarakhand"
   },
@@ -62,6 +66,8 @@ const mockPlaces: Place[] = [
     location: { latitude: 30.1087, longitude: 78.2933 },
     rating: 4.7,
     category: "Spiritual",
+    openingMonths: { from: "January", to: "December" },
+    bestTimeToVisit: { from: "October", to: "March" },
     features: ["Yoga", "Ganga Aarti", "Laxman Jhula and Ram Jhula", "River Rafting","Bungee Jumping","Giant Swing", "Kayaking", "Camping", "Zipline", "Sky Cycle", "Temples"],
     state: "Uttarakhand"
   },
@@ -88,6 +94,8 @@ const mockPlaces: Place[] = [
     location: { latitude: 10.0889, longitude: 77.0595 },
     rating: 4.7,
     category: "Nature",
+    openingMonths: { from: "January", to: "December" },
+    bestTimeToVisit: { from: "October", to: "February" },
     features: ["Tea Plantations", "Hill Station", "Photography", "Zipline", " Paragliding", "Waterfalls"],
     state: "Kerala"
   },
@@ -104,6 +112,8 @@ const mockPlaces: Place[] = [
     location: { latitude: 9.4981, longitude: 76.3388 },
     rating: 4.6,
     category: "Waterscape",
+    openingMonths: { from: "January", to: "December" },
+    bestTimeToVisit: { from: "October", to: "February" },
     features: ["Houseboats", "Backwaters", "Village Life"],
     state: "Kerala"
   },

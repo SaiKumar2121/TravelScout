@@ -209,7 +209,7 @@ const PlaceDetails = () => {
         {/* Photo grid section */}
         {place.images && place.images.length > 0 && (
         <div className="mb-6">
-         <h2 className="font-semibold text-lg mb-3">Photos</h2>
+         <h2 className="font-semibold text-lg mb-3 text-left">Photos</h2>
 
     {/* Desktop: Horizontal scroll view */}
     <div className="hidden md:block relative">
@@ -276,7 +276,7 @@ const PlaceDetails = () => {
 
         
         <div className="mb-6">
-          <h2 className="font-semibold text-lg mb-3">Features</h2>
+          <h2 className="font-semibold text-lg mb-3 text-left">Features</h2>
           <div className="flex flex-wrap gap-2">
             {place.features.map((feature, index) => (
               <Badge key={index} variant="secondary">
@@ -285,6 +285,31 @@ const PlaceDetails = () => {
             ))}
           </div>
         </div>
+
+        {place.openingMonths && place.bestTimeToVisit && (
+  <div className="mb-6 text-left">
+    <h2 className="font-semibold text-lg mb-3 text-left">Timings</h2>
+
+    <div className="text-muted-foreground mb-2">
+      <p><strong>Opening Months:</strong> {place.openingMonths.from} to {place.openingMonths.to}</p>
+      <p>
+        <strong>Best Time to Visit:</strong> {place.bestTimeToVisit.from} to {place.bestTimeToVisit.to}
+        <Button
+          size="sm"
+          variant="ghost"
+          className="ml-2 text-sm text-blue-600 hover:underline"
+          onClick={() => toast({
+            title: "Coming soon",
+            description: "AI-based explanation for best time to visit will be available soon!"
+          })}
+        >
+          Why?
+        </Button>
+      </p>
+    </div>
+  </div>
+)}
+
         
         <div className="mt-8">
           <Button className="w-full bg-travel-blue hover:bg-travel-blue/90" onClick={handleOpenGoogleMaps}>
