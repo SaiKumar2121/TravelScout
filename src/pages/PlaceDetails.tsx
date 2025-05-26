@@ -8,6 +8,7 @@ import { Place } from "@/types";
 import { MapPin, Navigation, ArrowLeft, Info } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import { PhotoModal } from "@/components/PhotoModal";
+import { fetchWhyBestTimeAnswer } from "@/services/aiService";
 import "../App.css";
 
 interface WeatherInfo {
@@ -27,6 +28,10 @@ const PlaceDetails = () => {
   const [initialPhotoIndex, setInitialPhotoIndex] = useState(0);
   const [weather, setWeather] = useState<WeatherInfo | null>(null);
   const weatherCache = useRef<{ [key: string]: WeatherInfo }>({});
+  const [showWhyAnswer, setShowWhyAnswer] = useState(false);
+  const [whyAnswer, setWhyAnswer] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+
 
   const fetchWeather = async (lat: number, lon: number): Promise<WeatherInfo | null> => {
     const cacheKey = `${lat},${lon}`;
@@ -106,6 +111,36 @@ const PlaceDetails = () => {
     });
   };
 
+  const handleWhyClick = async () => {
+    if (showWhyAnswer || !place?.name || !place?.bestTimeToVisit?.from) return;
+  
+    setIsTyping(true);
+    setShowWhyAnswer(true);
+    setWhyAnswer("");
+  
+    try {
+      const answer = await fetchWhyBestTimeAnswer(
+        place.name,
+        `${place.bestTimeToVisit.from} to ${place.bestTimeToVisit.to}`
+      );
+  
+      let index = 0;
+      const interval = setInterval(() => {
+        setWhyAnswer((prev) => prev + answer[index]);
+        index++;
+        if (index === answer.length) {
+          clearInterval(interval);
+          setIsTyping(false);
+        }
+      }, 30);
+    } catch (error) {
+      console.error("AI fetch failed:", error);
+      setWhyAnswer("Oops! Couldn’t get an answer from AI.");
+      setIsTyping(false);
+    }
+  };
+  
+
   const openPhotoModal = (index: number) => {
     setInitialPhotoIndex(index);
     setPhotoModalOpen(true);
@@ -121,6 +156,35 @@ const PlaceDetails = () => {
       });
     }
   };
+
+  const renderFormattedAnswer = (answer: string) => {
+    const lines = answer
+      .replace(/\*\*(.*?)\*\*/g, '$1') // remove markdown bold
+      .replace(/undefined$/, '') // remove trailing undefined
+      .trim()
+      .split('\n')
+      .filter(Boolean);
+  
+    return (
+      <div className="space-y-2 mt-2 text-sm text-muted-foreground leading-relaxed">
+        {lines.map((line, i) => {
+          if (/^\d+\./.test(line)) {
+            // Side heading like "1. Weather Conditions"
+            const [, heading] = line.match(/^\d+\.\s+(.*)/) || [];
+            return (
+              <p key={i} className="font-medium text-[15px] text-black dark:text-white">
+                {heading}
+              </p>
+            );
+          } else {
+            // Regular paragraph
+            return <p key={i}>{line}</p>;
+          }
+        })}
+      </div>
+    );
+  };
+  
 
   if (isLoading) {
     return (
@@ -298,13 +362,16 @@ const PlaceDetails = () => {
           size="sm"
           variant="ghost"
           className="ml-2 text-sm text-blue-600 hover:underline"
-          onClick={() => toast({
-            title: "Coming soon",
-            description: "AI-based explanation for best time to visit will be available soon!"
-          })}
+          onClick={handleWhyClick}
         >
-          Why?
+          Why this time?
         </Button>
+        {showWhyAnswer && (
+         <div>
+          {renderFormattedAnswer(whyAnswer)}
+          {isTyping && <span className="animate-pulse">|</span>}
+        </div>
+        )}
       </p>
     </div>
   </div>
