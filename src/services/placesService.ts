@@ -105,9 +105,11 @@ const mockPlaces: Place[] = [
     description: "The network of lagoons, lakes, and canals in Kerala, often called the 'Venice of the East'. Famous for its houseboat cruises that offer a glimpse of village life along the serene backwaters surrounded by coconut trees.",
     imageUrl: "https://images.unsplash.com/photo-1578932017755-6f66fe010497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
-      "https://images.unsplash.com/photo-1578932017755-6f66fe010497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1580289445498-a05eb71010df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/f3/1b/4a/alleppey-backwater-cruise.jpg?w=900&h=500&s=1",
+      "https://lh3.googleusercontent.com/p/AF1QipPNEVgGlQBCFu0fjkY0RxUHeodSxMy9I9BwTYdg=s680-w680-h510-rw",
+      "https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqHzViHBNHph4groEgiky4kT4n50vGVXyyHpypb8hw52igP-8L5bMeZrV5Cuogzoi8ZAgMQCRFvheWN3hgpAQkvG5bC2nqRV6oHdzkZ8P6blufQxCqKwktyAgzDMZDTii8ArmJylg=s680-w680-h510-rw",
+      "https://lh3.googleusercontent.com/gps-cs-s/AC9h4npOO5_nXDRylvE6cJYmPwpK4DgM0deKhC9cy3YK92GnJnbaS8OQGXxsq7NlJ58NmXuacBujRUpAqJEmi7SvoJvyZ2FPmfvH8l9htGz27ItTe55gt6NRIp0HpQ_84weTs1-Uxiw=s680-w680-h510-rw",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/23/0b/63/caption.jpg?w=1000&h=-1&s=1"
     ],
     location: { latitude: 9.4981, longitude: 76.3388 },
     rating: 4.6,
@@ -123,9 +125,16 @@ const mockPlaces: Place[] = [
     description: "A lush green hill station in Kerala known for its coffee plantations, wildlife sanctuaries, and ancient caves. The region is dotted with waterfalls, trekking trails, and offers a glimpse into tribal culture.",
     imageUrl: "https://images.unsplash.com/photo-1623936247318-8dba534ebe76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
-      "https://images.unsplash.com/photo-1623936247318-8dba534ebe76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1600703090899-c93d017862b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1621622646238-2302977f9740?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      "https://www.keralatourism.org/_next/image/?url=https%3A%2F%2Fik.imagekit.io%2Fxsnlqng4k%2FYoutubeImages%2Ftr%3Aw-1920%2Ch-1080%2Fvi%2FOnG4-uKu2PM%2Fmaxresdefault.jpg&w=1920&q=75",
+      "https://thewoodsresorts.com/uploads/media/wildlife-in-wayanad6358c80fd9737.jpg",
+      "https://r1imghtlak.mmtcdn.com/ef15ff86612d11e9a9260242ac110003.jpg",
+      "https://media-cdn.tripadvisor.com/media/photo-s/12/d5/f8/8b/vythiri-mist-resort.jpg",
+      "https://i.ytimg.com/vi/bgaTfon938M/maxresdefault.jpg",
+      "https://s3.india.com/wp-content/uploads/2024/06/10-Must-Do-Activities-in-Wayanad.jpg",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/5d/b1/34/beautiful-soojipara.jpg?w=1200&h=700&s=1",
+      "https://wayanadfort.com/images/wayanad-banasura-sagar-dam.jpg",
+      "https://www.dtpcwayanad.com/uploads/picture_gallery/gallery_images/chembra-peak-20230429161812306996.webp",
+      "https://touristplacesinwayanad.com/wp-content/uploads/2022/06/edakkal-caves-timings-1024x536.png"
     ],
     location: { latitude: 11.6854, longitude: 76.1320 },
     rating: 4.6,
@@ -141,9 +150,14 @@ const mockPlaces: Place[] = [
     description: "A historic Hindu temple located in Madurai, Tamil Nadu. Known for its stunning Dravidian architecture with thousands of colorful sculptures, towering gopurams (gateway towers), and intricate art that depicts ancient tales.",
     imageUrl: "https://images.unsplash.com/photo-1604171598147-e2f249d5d907?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
-      "https://images.unsplash.com/photo-1604171598147-e2f249d5d907?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1621397323368-8a5c7983d357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1573555657105-74c0c73208a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      "https://admin.southindiatoursandtravels.com/pages/gallery/24742.jpg",
+      "https://miro.medium.com/v2/resize:fit:1400/1*R7yKx3b1UEthFsGP6v4tIg.jpeg",
+      "https://www.pilgrimagetour.in/blog/wp-content/uploads/2024/04/Meenakshi-Temple-History.jpg",
+      "https://m.media-amazon.com/images/S/pv-target-images/694e5a24cc7fb0d4a7e429954c15332d89c94de1784a8013a22deaca6fe9125c.jpg",
+      "https://thetempleguru.com/wp-content/uploads/2023/08/meenakshi-amman-temple-16.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/6/63/Golden_Lotus_in_Meenakshi_Amman_Temple.jpg",
+      "https://cdn.shopify.com/s/files/1/0525/5285/9819/files/76_1024x1024.jpg?v=1722935885",
+      "https://live.staticflickr.com/5254/5411400335_2f1881b9a6_z.jpg"
     ],
     location: { latitude: 9.9195, longitude: 78.1193 },
     rating: 4.8,
@@ -210,8 +224,13 @@ const mockPlaces: Place[] = [
     imageUrl: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
       "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1577472153505-5a7df2d74c5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1528493448633-7ba8d62a5878?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/59/82/2b/butterfly-beach1.jpg?w=1000&h=-1&s=1",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/cf/53/eb/restaurantes-sobre-la.jpg?w=1000&h=-1&s=1",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/bf/9a/42/palolem-beach.jpg?w=1000&h=-1&s=1",
+      "https://i0.wp.com/trot.world/wp-content/uploads/2020/07/IMG_6002.jpg?resize=697%2C523&ssl=1",
+      "https://static.toiimg.com/thumb/105923655.cms?resizemode=75&width=1200&height=900",
+      "https://samaaravillas.com/goa/goa-beaches/imgs/baga-beach-feature1.jpg",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/49/db/8b/gao-beach.jpg?w=800&h=-1&s=1"
     ],
     location: { latitude: 15.2993, longitude: 74.1240 },
     rating: 4.6,
@@ -311,9 +330,9 @@ const mockPlaces: Place[] = [
     description: "An iconic arch monument in Mumbai built during the British Raj. This seaside landmark commemorates the visit of King George V and Queen Mary and is a popular spot for tourists and locals alike.",
     imageUrl: "https://images.unsplash.com/photo-1567384384024-08582f0a501f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
     images: [
-      "https://images.unsplash.com/photo-1567384384024-08582f0a501f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      "https://assets.simplotel.com/simplotel/image/upload/x_0,y_1208,w_3492,h_1968,r_0,c_crop,q_80,fl_progressive/w_500,f_auto,c_fit/theory9---premium-service-apts/mumbai_gateway_of_india",
+      "https://architectureupdate.in/wp-content/uploads/2024/12/gateway-of-india.jpg",
+      "https://media.istockphoto.com/id/1397747193/photo/mumbais-iconic-historical-landmark-gateway-of-india-beautifully-illuminared-colorfully-and.jpg?s=612x612&w=0&k=20&c=yg4OfeV5xAUYUfUDCk2X9VEjIIujHe7NF_xZwZEcfgg="
     ],
     location: { latitude: 18.9217, longitude: 72.8347 },
     rating: 4.6,
